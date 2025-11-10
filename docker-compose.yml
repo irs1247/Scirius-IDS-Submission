@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: scirius
+      POSTGRES_PASSWORD: scirius
+      POSTGRES_DB: scirius
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scirius"]
+      interval: 10s
+      retries: 5
+
+  elasticsearch:
+    image: opensearchproject/opensearch:1
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: single-node
+
+  kibana:
+    image: opensearchproject/opensearch-dashboards:1
+    ports:
+      - "5601:5601"
+
+volumes:
+  db-data:

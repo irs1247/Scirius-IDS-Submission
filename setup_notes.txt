@@ -1,0 +1,18 @@
+# Setup Notes - Scirius IDS Platform
+
+1. Cloned Scirius repository and installed dependencies.
+2. Started Docker containers using docker compose.
+3. Encountered PostgreSQL version conflict — resolved by disabling Suricata service.
+4. Verified services: Elasticsearch, Kibana, RabbitMQ, Fluentd, etc.
+5. Created GitHub repository for submission.
+
+## Commands Used
+sudo docker compose up -d
+sudo docker compose ps
+sudo docker compose logs db
+
+## Observations
+- Elasticsearch and Kibana started successfully.
+- Suricata service was disabled to resolve dependency issues.
+- PostgreSQL required manual adjustment due to version mismatch (v18+).
+- Final verification done via `docker compose ps`.
